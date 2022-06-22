@@ -16,6 +16,7 @@ class WeatherViewController: UIViewController, UITextFieldDelegate, CLLocationMa
     @IBOutlet weak var searchTextField: UITextField!
     
     let locationManager = CLLocationManager()
+    var weatherManager = WeatherManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +39,7 @@ class WeatherViewController: UIViewController, UITextFieldDelegate, CLLocationMa
             locationManager.stopUpdatingLocation()
             let lat = location.coordinate.latitude
             let lon = location.coordinate.longitude
-            print("\(lat), \(lon)")
+            weatherManager.fetchWeather(latitude: lat, longitude: lon)
         }
     }
     
@@ -71,7 +72,7 @@ class WeatherViewController: UIViewController, UITextFieldDelegate, CLLocationMa
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         if let city = searchTextField.text {
-            print(city)
+            weatherManager.fetchWeather(cityName: city)
         }
         searchTextField.text = ""
     }
