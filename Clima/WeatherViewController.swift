@@ -22,6 +22,9 @@ class WeatherViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func locationPressed(_ sender: UIButton) {
     }
+
+    
+//MARK: - UITextFieldDelegate
     
     @IBAction func searchPressed(_ sender: UIButton) {
         searchTextField.endEditing(true)
@@ -32,7 +35,14 @@ class WeatherViewController: UIViewController, UITextFieldDelegate {
         return true
     }
 
-
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        if textField.text != "" {
+            return true
+        } else {
+            textField.placeholder = "Type something"  // For Alert
+            return false
+        }
+    }
 
 }
 
