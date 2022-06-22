@@ -33,6 +33,18 @@ class WeatherViewController: UIViewController, UITextFieldDelegate, CLLocationMa
         locationManager.requestLocation()
     }
     
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.last {
+            locationManager.stopUpdatingLocation()
+            let lat = location.coordinate.latitude
+            let lon = location.coordinate.longitude
+            print("\(lat), \(lon)")
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print(error)
+    }
     
 
     
@@ -57,7 +69,6 @@ class WeatherViewController: UIViewController, UITextFieldDelegate, CLLocationMa
     }
 
     
-    //TODO: Need fetchWeather(cityName: city) method
     func textFieldDidEndEditing(_ textField: UITextField) {
         if let city = searchTextField.text {
             print(city)
