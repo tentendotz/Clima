@@ -23,7 +23,7 @@ class WeatherViewController: UIViewController, UITextFieldDelegate, CLLocationMa
         searchTextField.delegate = self
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
-        
+        locationManager.requestLocation()
         
     }
 
