@@ -44,5 +44,14 @@ class WeatherViewController: UIViewController, UITextFieldDelegate {
         }
     }
 
+    
+    //TODO: Need fetchWeather(cityName: city) method
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if let city = searchTextField.text {
+            print(city)
+        }
+        searchTextField.text = ""
+    }
+
 }
 
