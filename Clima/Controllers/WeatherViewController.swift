@@ -21,10 +21,11 @@ class WeatherViewController: UIViewController, UITextFieldDelegate, CLLocationMa
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        searchTextField.delegate = self
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestLocation()
+        searchTextField.delegate = self
+        weatherManager.delegate = self
         
     }
 
@@ -85,6 +86,10 @@ class WeatherViewController: UIViewController, UITextFieldDelegate, CLLocationMa
             self.conditionImageView.image = UIImage(systemName: weather.conditionName)
             self.cityLabel.text = weather.cityName
         }
+    }
+    
+    func didFailWithError(error: Error) {
+        print(error)
     }
     
 
