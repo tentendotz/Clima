@@ -8,7 +8,7 @@
 import UIKit
 import CoreLocation
 
-class WeatherViewController: UIViewController, UITextFieldDelegate, CLLocationManagerDelegate {
+class WeatherViewController: UIViewController, UITextFieldDelegate, CLLocationManagerDelegate, WeatherManagerDelegate {
     
     @IBOutlet weak var conditionImageView: UIImageView!
     @IBOutlet weak var temperatureLabel: UILabel!
@@ -68,7 +68,6 @@ class WeatherViewController: UIViewController, UITextFieldDelegate, CLLocationMa
             return false
         }
     }
-
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         if let city = searchTextField.text {
@@ -76,6 +75,18 @@ class WeatherViewController: UIViewController, UITextFieldDelegate, CLLocationMa
         }
         searchTextField.text = ""
     }
+    
+    
+//MARK: - WeatherManagerDelegate
+    
+    func didUpdateWeather(_ weatherManager: WeatherManager, weather: WeatherModel) {
+        DispatchQueue.main.async {
+            self.temperatureLabel.text = weather.temperatureString
+            self.conditionImageView.image = UIImage(systemName: weather.conditionName)
+            self.cityLabel.text = weather.cityName
+        }
+    }
+    
 
 }
 
