@@ -8,7 +8,7 @@
 import UIKit
 import CoreLocation
 
-class WeatherViewController: UIViewController, UITextFieldDelegate, CLLocationManagerDelegate, WeatherManagerDelegate {
+class WeatherViewController: UIViewController {
     
     @IBOutlet weak var conditionImageView: UIImageView!
     @IBOutlet weak var temperatureLabel: UILabel!
@@ -24,12 +24,17 @@ class WeatherViewController: UIViewController, UITextFieldDelegate, CLLocationMa
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestLocation()
+        
         searchTextField.delegate = self
         weatherManager.delegate = self
         
     }
+}
+
 
 //MARK: - CLLocationManagerDelegate
+    
+extension WeatherViewController: CLLocationManagerDelegate {
     
     @IBAction func locationPressed(_ sender: UIButton) {
         locationManager.requestLocation()
@@ -48,9 +53,12 @@ class WeatherViewController: UIViewController, UITextFieldDelegate, CLLocationMa
         print(error)
     }
     
+}
 
-    
+
 //MARK: - UITextFieldDelegate
+
+extension WeatherViewController: UITextFieldDelegate {
     
     @IBAction func searchPressed(_ sender: UIButton) {
         searchTextField.endEditing(true)
@@ -60,7 +68,7 @@ class WeatherViewController: UIViewController, UITextFieldDelegate, CLLocationMa
         searchTextField.endEditing(true)
         return true
     }
-
+    
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         if textField.text != "" {
             return true
@@ -77,8 +85,12 @@ class WeatherViewController: UIViewController, UITextFieldDelegate, CLLocationMa
         searchTextField.text = ""
     }
     
+}
+    
     
 //MARK: - WeatherManagerDelegate
+
+extension WeatherViewController: WeatherManagerDelegate {
     
     func didUpdateWeather(_ weatherManager: WeatherManager, weather: WeatherModel) {
         DispatchQueue.main.async {
@@ -92,6 +104,4 @@ class WeatherViewController: UIViewController, UITextFieldDelegate, CLLocationMa
         print(error)
     }
     
-
 }
-

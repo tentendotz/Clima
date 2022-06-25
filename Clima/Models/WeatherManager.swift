@@ -8,7 +8,6 @@
 import Foundation
 import CoreLocation
 
-
 protocol WeatherManagerDelegate {
     func didUpdateWeather(_ weatherManager: WeatherManager, weather: WeatherModel)
     func didFailWithError(error: Error)
@@ -16,10 +15,8 @@ protocol WeatherManagerDelegate {
 
 
 struct WeatherManager {
-    
     let weatherURL = "https://api.openweathermap.org/data/2.5/weather?units=metric"
     let apiKey = "YOUR_API_KEY_HERE"
-    
     
     var delegate: WeatherManagerDelegate?
     
