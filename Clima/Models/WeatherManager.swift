@@ -41,8 +41,8 @@ struct WeatherManager {
                     self.delegate?.didFailWithError(error: error!)
                     return
                 }
-                if let safeDate = data {
-                    if let weather = self.parseJSON(safeDate) {
+                if let safeData = data {
+                    if let weather = self.parseJSON(safeData) {
                         self.delegate?.didUpdateWeather(self, weather: weather)
                     }
                 }
