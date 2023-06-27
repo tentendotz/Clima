@@ -1,7 +1,7 @@
-# Clima - Weather App
+Clima - Weather App
+===================
 
 This App is the base of what I learned from Dr. Angela Yu @ The App Brewery.
-
 
 ## Getting Started
 
@@ -10,4 +10,17 @@ This App is the base of what I learned from Dr. Angela Yu @ The App Brewery.
 
 1. Replace the `apiKey` property with yours in `WeatherManager.swift` file.
 
----
+#### APIs Used
+
+- [OpenWeather API](https://openweathermap.org/)
+
+#### Included Topics
+
+- URL Structure
+- URLSession Class
+- Codable (Decodable & Encodable Protocol)
+- JSONDecoder Class
+- Core Location Framework
+- CLLocationManager Class
+
+___
